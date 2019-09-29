@@ -4,7 +4,11 @@
 	<div class="panel card-background well">
 		<div class="panel-heading well card card-header">
 			<h1><strong>{{ perfil.nome }}</strong></h1>
-			<strong class="pull-top"><a href="{% url 'convidar' perfil.id %}">convidar</a></strong>
+			{% if contato_existente %}
+				<div class="well well-sm card-background">Vocês estão conectados! :)</div>
+			{% else %}
+				<strong class="pull-top"><a href="{% url 'convidar' perfil.id %}">convidar</a></strong>
+			{% endif %}
 		</div>
 		<address class="card">
 			<!-- <a href="mailto: {{ perfil.email }}">{{ perfil.email }}</a> -->

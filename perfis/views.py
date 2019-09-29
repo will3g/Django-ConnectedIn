@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from perfis.models import Perfil
+from perfis.models import Perfil, Convite
 from django.shortcuts import redirect
 
 def index(request):
@@ -14,7 +14,15 @@ def index(request):
 
 def exibir(request, perfil_id):
   perfil = Perfil.objects.get(id=perfil_id)
-  return render(request, 'perfil.html', {"perfil": perfil})
+  logado = get_perfil_logado(request)
+  contato_existente = perfil in logado.contatos.all()
+  return render(
+    request, 'perfil.html', 
+    {
+      "perfil": perfil,
+      "contato_existente": contato_existente
+    }
+  )
 
 def convidar(request, perfil_id):
   convidar = Perfil.objects.get(id=perfil_id)
@@ -22,8 +30,8 @@ def convidar(request, perfil_id):
   logado.convidar(convidar)
   return redirect('index')
 
-def aceitar(request, convite_id):
-  convite = Convite.objects.get(id=convite_id)
+def aceitar(request, perfil_id):
+  convite = Convite.objects.get(id=perfil_id)
   convite.aceitar()
   return redirect('index')
 

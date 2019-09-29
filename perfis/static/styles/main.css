@@ -60,6 +60,10 @@ body {
   margin-top: 10px;
 }
 
+.color-connectedin {
+  color: #0073b1;
+}
+
 .card {
   display: flex;
   flex-direction: column;
