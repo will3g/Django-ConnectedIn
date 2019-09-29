@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-	<head>
-		<meta charset="utf-8">
-		<title>ConnectedIn</title>
-	</head>
-	<body>
-		<h1>Home</h1>
+{% extends "base.html" %}
+{% block body %}
+<div class="col-lg-12">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<strong>Todos os Perfis</strong>
+		</div>
 		{% if perfis %}
 			<ul>
 				{% for perfil in perfis %}
-					<li>
+					<li class="list">
 						<a href="{% url 'exibir' perfil.id %}">{{ perfil.nome }}</a>
 					</li>
 				{% endfor %}
@@ -17,5 +16,6 @@
 		{% else %}
 			<p>Nenhum Perfil encontrado</p>
 		{% endif %}
-	</body>
-</html>
+	</div>
+</div>
+{% endblock %}

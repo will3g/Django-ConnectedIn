@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-	<head>
-		<meta charset="utf-8">
-		<title>ConnectedIn</title>
-	</head>
-	<body>
-		<h1>Detalhe Perfil</h1>
-		<strong><a href="{% url 'convidar' perfil.id %}">convidar</a></strong>
-		<p><strong>Nome: </strong>{{ perfil.nome }}</p>
-		<p><strong>Email: </strong>{{ perfil.email }}</p>
-		<p><strong>Telefone: </strong>{{ perfil.telefone }}</p>
-		<p><strong>Nome empresa: </strong>{{ perfil.nome_empresa }}</p>
-	</body>
-</html>
+{% extends "base.html" %}
+{% block body %}
+<div class="col-lg-12 card-size cards">
+	<div class="panel card-background well">
+		<div class="panel-heading well card card-header">
+			<h1><strong>{{ perfil.nome }}</strong></h1>
+			<strong class="pull-top"><a href="{% url 'convidar' perfil.id %}">convidar</a></strong>
+		</div>
+		<address class="card">
+			<!-- <a href="mailto: {{ perfil.email }}">{{ perfil.email }}</a> -->
+			<p><strong>Email: </strong>{{ perfil.email }}</p>
+			<p><strong>Telefone: </strong>{{ perfil.telefone }}</p><br>
+			<p><strong>Nome empresa: </strong>{{ perfil.nome_empresa }}</p><br>
+		</address>
+	</div>
+</div>
+{% endblock %}
