@@ -73,7 +73,7 @@ body {
 }
 
 .card-background {
-  background: #0073b1;
+  background: #0073b1 !important;
   color: #ffff;
 }
 

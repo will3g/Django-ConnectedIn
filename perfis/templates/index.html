@@ -2,7 +2,7 @@
 {% block body %}
 <div class="col-lg-12">
 	<div class="panel panel-primary">
-		<div class="panel-heading">
+		<div class="panel-heading card-background">
 			<strong>Todos os Perfis</strong>
 		</div>
 		{% if perfis %}
@@ -16,6 +16,30 @@
 		{% else %}
 			<p>Nenhum Perfil encontrado</p>
 		{% endif %}
+	</div>
+
+	<div class="panel panel-primary">
+		{% with total_convites=logado.convites_recebidos.count %}
+			{% if total_convites %}
+			<div class="panel-heading card-background">
+				<strong>{{ logado.nome }} você tem {{ total_convites }} 
+					convite{{ total_convites |pluralize }} aguardando 
+					aprovação</strong>
+			</div>
+			<ul class="list-group">
+				{% for convite in logado.convites_recebidos.all %}
+				<li class="list-group-item">
+					{{ convite.solicitante.nome }}
+					<a href="{% url 'aceitar' convite.id %}" class="pull-right">Conectar</a>
+				</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+			<div class="panel-body card-background">
+				<strong>Nenhum pedido de conexão :(</strong>
+			</div>
+			{% endif %}
+		{% endwith %}
 	</div>
 </div>
 {% endblock %}
